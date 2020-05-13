@@ -3,6 +3,7 @@
 
 class BaseScene;
 using Unique_Base = std::unique_ptr<BaseScene>;
+
 class BaseScene
 {
 public:
