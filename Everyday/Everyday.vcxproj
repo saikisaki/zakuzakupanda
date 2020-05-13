@@ -127,6 +127,8 @@
     <ClCompile Include="source\Mng\ImageMng.cpp" />
     <ClCompile Include="source\Mng\SceneMng.cpp" />
     <ClCompile Include="source\scene\GameScene.cpp" />
+    <ClCompile Include="source\unit\Obj.cpp" />
+    <ClCompile Include="source\unit\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\common\VECTOR2.h" />
@@ -134,6 +136,8 @@
     <ClInclude Include="source\Mng\SceneMng.h" />
     <ClInclude Include="source\scene\BaseScene.h" />
     <ClInclude Include="source\scene\GameScene.h" />
+    <ClInclude Include="source\unit\Obj.h" />
+    <ClInclude Include="source\unit\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

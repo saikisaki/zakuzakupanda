@@ -1,4 +1,5 @@
 #pragma once
+#include "../scene/BaseScene.h"
 #include"../common/VECTOR2.h"
 
 #define lpSceneMng SceneMng::GetInstance()
@@ -22,5 +23,8 @@ private:
 	~SceneMng();
 
 	bool sysInit(void);
+
+	Unique_Base activeScene;	// äeº∞›Ç…±∏æΩÇ∑ÇÈÇΩÇﬂÇÃ’∆∞∏Œﬂ≤›¿∞
+	
 };
 

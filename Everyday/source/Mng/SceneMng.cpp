@@ -1,16 +1,17 @@
 #include "Dxlib.h"	// DxLib×²ÌÞ×Ø‚ðŽg—p‚·‚é
 #include "SceneMng.h"
+#include "../scene/GameScene.h"
 
 #define SCREEN_SIZE_X (1280)
 #define SCREEN_SIZE_Y (720)
 
 void SceneMng::Run(void)
 {
+	activeScene = std::make_unique<GameScene>();
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-		
 		ClsDrawScreen();
-
+		activeScene = activeScene->UpDate(std::move(activeScene));
 		ScreenFlip();
 	}
 

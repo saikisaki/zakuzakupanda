@@ -63,13 +63,3 @@ VECTOR2 operator%(const VECTOR2 &u, int v);
 
 // VECTOR2 % VECTOR2
 VECTOR2 operator%(const VECTOR2 &u, const VECTOR2 &v);
-
-struct Rect
-{
-	Rect() : startPos({0, 0}), endPos({0, 0}) {}
-	Rect(VECTOR2 start, VECTOR2 end) : startPos(start), endPos(end) {}
-
-	VECTOR2 startPos;
-	VECTOR2 endPos;
-};
-
