@@ -26,6 +26,7 @@ class Obj
 public:
 	Obj();
 	~Obj();
+	virtual UNIT GetUnit(void) = 0;
 	virtual void Draw(void);
 	virtual void SetMove(void);
 

@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\common\VECTOR2.cpp" />
+    <ClCompile Include="source\input\GameCtrl.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Mng\ImageMng.cpp" />
     <ClCompile Include="source\Mng\SceneMng.cpp" />
@@ -132,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\common\VECTOR2.h" />
+    <ClInclude Include="source\input\GameCtrl.h" />
     <ClInclude Include="source\Mng\ImageMng.h" />
     <ClInclude Include="source\Mng\SceneMng.h" />
     <ClInclude Include="source\scene\BaseScene.h" />
