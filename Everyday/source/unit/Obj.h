@@ -8,7 +8,8 @@ enum class STATE	// キャラの現在の状態
 {
 	NORMAL,		// 通常
 	EX,			// 特殊
-	DEATH,		// 爆破
+	BOMB,		// 爆破
+	DEATH,		// 死
 	INVINCIBLE, // 無敵
 	MAX
 };
@@ -32,7 +33,8 @@ public:
 	virtual UNIT GetUnit(void) = 0;
 	virtual void Draw(void);
 	virtual void SetMove(void);
-
+	const STATE State(void);
+	void State(const STATE state);
 	// 座標情報取得
 	const VECTOR2 Pos()const;
 	// サイズ情報取得

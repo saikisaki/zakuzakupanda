@@ -27,6 +27,23 @@ void Player::Init(void)
 	_speed = 10;
 	_life = 10;
 	_playerH = IMAGE_ID("image/player.png")[0];
+	_bombSize = 0;
+	_animCnt = 0;
+	_animKey = STATE::NORMAL;
+}
+
+bool Player::Explosion(void)
+{
+	_bombSize = _animCnt / 3;
+
+	if (_bombSize >= 100)
+	{
+		return false;
+	}
+
+	_animCnt++;
+
+	return true;
 }
 
 UNIT Player::GetUnit(void)
@@ -36,9 +53,18 @@ UNIT Player::GetUnit(void)
 
 void Player::SetMove(void)
 {
+	if (!Explosion())
+	{
+		State(STATE::DEATH);
+	}
+
+	if (_animKey == STATE::BOMB)
+	{
+		return;
+	}
+
 	gameCtrl->UpDate();
 
-	
 	if (gameCtrl->GetPadData(BUTTON_TYPE::LEFT))
 	{
 		_pos.x = max(0 + _size / 2, _pos.x - _speed);
@@ -60,5 +86,13 @@ void Player::SetMove(void)
 
 void Player::Draw(void)
 {
-	DrawRotaGraph(_pos.x,_pos.y,0.3,0,_playerH,true);
+	if (_animKey == STATE::NORMAL)
+	{
+		DrawRotaGraph(_pos.x, _pos.y, 0.3, 0, _playerH, true);
+	}
+	else if (_animKey == STATE::BOMB)
+	{
+		DrawCircle(_pos.x, _pos.y,_bombSize,0xff0000,0);
+	}
+	
 }

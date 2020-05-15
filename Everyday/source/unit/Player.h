@@ -16,8 +16,11 @@ public:
 
 private:
 	void Init(void);
+	bool Explosion(void);
 
 	int _playerH;		// プレイヤー用の画像
+
+	int _bombSize;		// 爆風サイズ
 
 	std::unique_ptr<GameCtrl> gameCtrl;		// キャラ操作用の画像
 };

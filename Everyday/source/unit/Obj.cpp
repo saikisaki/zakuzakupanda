@@ -17,6 +17,16 @@ void Obj::SetMove(void)
 {
 }
 
+const STATE Obj::State(void)
+{
+	return _animKey;
+}
+
+void Obj::State(const STATE state)
+{
+	_animKey = state;
+}
+
 const VECTOR2 Obj::Pos() const
 {
 	return _pos;
