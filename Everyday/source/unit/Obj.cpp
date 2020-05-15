@@ -1,11 +1,9 @@
 #include "Obj.h"
 
 
-
 Obj::Obj()
 {
 }
-
 
 Obj::~Obj()
 {
@@ -27,4 +25,9 @@ const VECTOR2 Obj::Pos() const
 const int Obj::Size() const
 {
 	return _size;
+}
+
+bool Obj::SetAnim(const STATE key, AnimVector & data)
+{
+	return _animMap.try_emplace(key, std::move(data)).second;
 }

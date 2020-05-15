@@ -1,5 +1,6 @@
 #pragma once
 #include "Obj.h"
+#include "../input/GameCtrl.h"
 
 class Player :
 	public Obj
@@ -15,5 +16,9 @@ public:
 
 private:
 	void Init(void);
+
+	int _playerH;		// プレイヤー用の画像
+
+	std::unique_ptr<GameCtrl> gameCtrl;		// キャラ操作用の画像
 };
 

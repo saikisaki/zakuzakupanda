@@ -5,25 +5,9 @@
 #define SCREEN_SIZE_X (1280)
 #define SCREEN_SIZE_Y (720)
 
-void SceneMng::Run(void)
-{
-	activeScene = std::make_unique<GameScene>();
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
-	{
-		ClsDrawScreen();
-		activeScene = activeScene->UpDate(std::move(activeScene));
-		ScreenFlip();
-	}
-
-}
-
-const VECTOR2 SceneMng::GetScreenSize(void)
-{
-	return VECTOR2(SCREEN_SIZE_X, SCREEN_SIZE_Y);
-}
-
 SceneMng::SceneMng()
 {
+	sysInit();
 }
 
 
@@ -40,6 +24,22 @@ bool SceneMng::sysInit(void)
 	if (DxLib_Init() == -1) return false;	// DX◊≤Ãﬁ◊ÿèâä˙âªèàóù
 	SetDrawScreen(DX_SCREEN_BACK);		// Ç–Ç∆Ç‹Ç∏ ﬁØ∏ ﬁØÃßÇ…ï`âÊ
 
-
 	return true;
+}
+
+void SceneMng::Run(void)
+{
+	activeScene = std::make_unique<GameScene>();
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	{
+		ClsDrawScreen();
+		activeScene = activeScene->UpDate(std::move(activeScene));
+		ScreenFlip();
+	}
+
+}
+
+const VECTOR2 SceneMng::GetScreenSize(void)
+{
+	return VECTOR2(SCREEN_SIZE_X, SCREEN_SIZE_Y);
 }

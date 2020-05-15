@@ -1,5 +1,7 @@
 #pragma once
 #include <memory>
+#include <map>
+#include <vector>
 #include "../common/Vector2.h"
 
 enum class STATE	// キャラの現在の状態
@@ -20,6 +22,7 @@ enum class UNIT
 
 class Obj;
 using Shared_Obj = std::shared_ptr<Obj>;
+using AnimVector = std::vector<std::pair<int, int>>;		// 画像ハンドル 表示フレーム数
 
 class Obj
 {
@@ -36,10 +39,15 @@ public:
 	const int Size()const;
 
 protected:
+	bool SetAnim(const STATE key, AnimVector &data);
 	VECTOR2 _pos;		// 座標
 	int _size;			// キャラの大きさ(半径)
-	double speed;		// 移動速度
+	int _speed;			// 移動速度
 	int _life;			// 機体の残機
+	int _animCnt;		// アニメーションカウンター
+	STATE _animKey;		// アニメーションタイプ
+	int _animFram;		// アニメーションのフレーム数
+	std::map<STATE, const AnimVector> _animMap;		// アニメーション情報を格納しているmap
 
 };
 

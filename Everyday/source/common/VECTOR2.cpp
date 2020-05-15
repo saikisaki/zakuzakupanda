@@ -182,3 +182,21 @@ VECTOR2 operator%(const VECTOR2 & u, const VECTOR2 & v)
 
 	return vec;
 }
+
+//“àÏ‚ğ•Ô‚·
+float Dot(const VECTOR2& va, const VECTOR2& vb)
+{
+	return va.x*vb.x + va.y*vb.y;
+}
+
+//ŠOÏ‚ğ•Ô‚·
+float Cross(const VECTOR2& va, const VECTOR2& vb)
+{
+	return va.x*vb.y - vb.x*va.y;
+}
+
+//“àÏ‰‰Zq
+float operator*(const VECTOR2& va, const VECTOR2& vb)
+{
+	return Dot(va, vb);
+}

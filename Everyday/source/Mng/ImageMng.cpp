@@ -11,33 +11,40 @@ ImageMng::~ImageMng()
 {
 }
 
-const VEC_INT& ImageMng::GetID(std::string f_name)
+const VEC_INT& ImageMng::GetID(const std::string & key)
 {
-	if (imgMap.find(f_name) == imgMap.end())			// imgMap[f_name]が存在するかの判断	true:存在しない　false:存在する
+	GetID(key, key);
+	return imgMap[key];
+}
+
+
+const VEC_INT& ImageMng::GetID(const std::string& key, const std::string& f_name)
+{
+	if (imgMap.find(key) == imgMap.end())			// imgMap[f_name]が存在するかの判断	true:存在しない　false:存在する
 	{
-		imgMap[f_name].resize(1);						// imgMap[f_name]配列をﾘｻｲｽﾞする
-		imgMap[f_name][0] = LoadGraph(f_name.c_str());	// imgMap[f_name][0]にﾌｧｲﾙ名f_nameの画像のﾊﾝﾄﾞﾙを代入
-		if (imgMap[f_name][0] == -1)
+		imgMap[key].resize(1);						// imgMap[f_name]配列をﾘｻｲｽﾞする
+		imgMap[key][0] = LoadGraph(f_name.c_str());	// imgMap[f_name][0]にﾌｧｲﾙ名f_nameの画像のﾊﾝﾄﾞﾙを代入
+		if (imgMap[key][0] == -1)
 		{
 			throw;
 		}
 	}
-	return imgMap[f_name];								// imgMap[f_name]を返す
+	return imgMap[key];								// imgMap[f_name]を返す
 }
 
-const VEC_INT & ImageMng::GetID(std::string f_name, VECTOR2 divSize, VECTOR2 divCut)
+const VEC_INT& ImageMng::GetID(const std::string& key, const std::string& f_name, VECTOR2 divSize, VECTOR2 divCut)
 {
-	if (imgMap.find(f_name) == imgMap.end())
+	if (imgMap.find(key) == imgMap.end())
 	{
-		imgMap[f_name].resize(divCut.x*divCut.y);
+		imgMap[key].resize(divCut.x*divCut.y);
 		if (LoadDivGraph(f_name.c_str(),
 			divCut.x*divCut.y,
 			divCut.x, divCut.y,
 			divSize.x, divSize.y,
-			&imgMap[f_name][0]) == -1)
+			&imgMap[key][0]) == -1)
 		{
 			throw;
 		}
 	}
-	return imgMap[f_name];
+	return imgMap[key];
 }
