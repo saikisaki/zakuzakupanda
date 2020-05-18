@@ -26,18 +26,19 @@ void Player::Init(void)
 
 	_speed = 10;
 	_life = 10;
+	_defSize = _size;
 	_playerH = IMAGE_ID("image/player.png")[0];
-	_bombSize = 0;
 	_animCnt = 0;
 	_animKey = STATE::NORMAL;
 }
 
 bool Player::Explosion(void)
 {
-	_bombSize = _animCnt / 3;
+	_size = _animCnt / 3;
 
-	if (_bombSize >= 100)
+	if (_size >= 100)
 	{
+		_size = _defSize;
 		return false;
 	}
 
@@ -53,14 +54,37 @@ UNIT Player::GetUnit(void)
 
 void Player::SetMove(void)
 {
-	if (!Explosion())
-	{
-		State(STATE::DEATH);
-	}
-
 	if (_animKey == STATE::BOMB)
 	{
-		return;
+		if (!Explosion())
+		{
+			State(STATE::DEATH);
+		}
+		else
+		{
+			return;
+		}
+	}
+	// Ç±Ç±Ç≈stateÇ™DEATHÇÃéûÇÃèàóùÇèëÇ≠
+	if (_animKey == STATE::DEATH)
+	{
+		_life--;
+		if (_life <= 0)
+		{
+			return;
+		}
+		State(STATE::INVINCIBLE);
+		_invincibleTime = 180;
+	}
+	// ñ≥ìGéûä‘
+	if (_invincibleTime)
+	{
+		_invincibleTime--;
+		if (_invincibleTime <= 0)
+		{
+			State(STATE::NORMAL);
+			_invincibleTime = 0;
+		}
 	}
 
 	gameCtrl->UpDate();
@@ -81,18 +105,22 @@ void Player::SetMove(void)
 	{
 		_pos.y = min(lpSceneMng.GetScreenSize().y - _size / 2, _pos.y + _speed);
 	}
-
 }
 
 void Player::Draw(void)
 {
-	if (_animKey == STATE::NORMAL)
+	if (_animKey == STATE::NORMAL
+	 || _animKey == STATE::INVINCIBLE)
 	{
 		DrawRotaGraph(_pos.x, _pos.y, 0.3, 0, _playerH, true);
 	}
 	else if (_animKey == STATE::BOMB)
 	{
-		DrawCircle(_pos.x, _pos.y,_bombSize,0xff0000,0);
+		DrawCircle(_pos.x, _pos.y, _size,0xff0000,0);
+	}
+	else
+	{
+		// âΩÇ‡ÇµÇ»Ç¢
 	}
 	
 }

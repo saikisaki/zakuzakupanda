@@ -4,11 +4,11 @@ class VECTOR2
 {
 public:
 	VECTOR2();
-	VECTOR2(int x, int y);
+	VECTOR2(float x, float y);
 	~VECTOR2();
 
-	int x;
-	int y;
+	float x;
+	float y;
 
 	// ‘ã“ü‰‰Zq
 	VECTOR2& operator = (const VECTOR2& vec);
@@ -17,7 +17,7 @@ public:
 	operator bool() { return this->x == 0 && this->y == 0; }
 
 	// “Y‚¦š‰‰Zq
-	int& operator[](int i);
+	float& operator[](float i);
 
 	// ”äŠr‰‰Zq
 	bool operator==(const VECTOR2& vec) const;
@@ -57,12 +57,6 @@ VECTOR2 operator/(const VECTOR2 &u, int v);
 
 // VECTOR2 % VECTOR2
 VECTOR2 operator/(const VECTOR2 &u, const VECTOR2 &v);
-
-// VECTOR2 % int
-VECTOR2 operator%(const VECTOR2 &u, int v);
-
-// VECTOR2 % VECTOR2
-VECTOR2 operator%(const VECTOR2 &u, const VECTOR2 &v);
 
 //“àÏ‚ğ•Ô‚·
 float Dot(const VECTOR2& va, const VECTOR2& vb);

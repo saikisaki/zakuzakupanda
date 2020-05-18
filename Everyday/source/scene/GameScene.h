@@ -17,5 +17,7 @@ private:
 
 	std::vector<Shared_Obj> _objList;		// キャラクターを管理するList
 	void Init(void)override;
+
+	int _frameCnt;
 };
 

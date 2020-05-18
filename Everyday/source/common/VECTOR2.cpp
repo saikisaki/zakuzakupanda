@@ -4,7 +4,7 @@ VECTOR2::VECTOR2()
 {
 }
 
-VECTOR2::VECTOR2(int x, int y)
+VECTOR2::VECTOR2(float x, float y)
 {
 	this->x = x;
 	this->y = y;
@@ -22,7 +22,7 @@ VECTOR2 & VECTOR2::operator=(const VECTOR2 & vec)
 	return (*this);
 }
 
-int & VECTOR2::operator[](int i)
+float & VECTOR2::operator[](float i)
 {
 	if (i == 0)
 	{
@@ -165,23 +165,7 @@ VECTOR2 operator/(const VECTOR2 & u, const VECTOR2 & v)
 	return vec;
 }
 
-VECTOR2 operator%(const VECTOR2 & u, int v)
-{
-	VECTOR2 vec;
-	vec.x = u.x % v;
-	vec.y = u.y % v;
 
-	return vec;
-}
-
-VECTOR2 operator%(const VECTOR2 & u, const VECTOR2 & v)
-{
-	VECTOR2 vec;
-	vec.x = u.x % v.x;
-	vec.y = u.y % v.y;
-
-	return vec;
-}
 
 //ì‡êœÇï‘Ç∑
 float Dot(const VECTOR2& va, const VECTOR2& vb)

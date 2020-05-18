@@ -35,6 +35,8 @@ public:
 	virtual void SetMove(void);
 	const STATE State(void);
 	void State(const STATE state);
+	const int Life(void);
+	void Life(const int life);
 	// 座標情報取得
 	const VECTOR2 Pos()const;
 	// サイズ情報取得
@@ -47,6 +49,7 @@ protected:
 	int _speed;			// 移動速度
 	int _life;			// 機体の残機
 	int _animCnt;		// アニメーションカウンター
+	int _defSize;		// デフォルトの機体サイズ
 	STATE _animKey;		// アニメーションタイプ
 	int _animFram;		// アニメーションのフレーム数
 	std::map<STATE, const AnimVector> _animMap;		// アニメーション情報を格納しているmap

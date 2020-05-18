@@ -19,9 +19,7 @@ private:
 	bool Explosion(void);
 
 	int _playerH;		// プレイヤー用の画像
-
-	int _bombSize;		// 爆風サイズ
-
+	int _invincibleTime;	// 無敵時間
 	std::unique_ptr<GameCtrl> gameCtrl;		// キャラ操作用の画像
 };
 

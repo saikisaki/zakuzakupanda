@@ -24,7 +24,22 @@ const STATE Obj::State(void)
 
 void Obj::State(const STATE state)
 {
+	if (_animKey != state)
+	{
+		_animCnt = 0;
+	}
+
 	_animKey = state;
+}
+
+const int Obj::Life(void)
+{
+	return _life;
+}
+
+void Obj::Life(const int life)
+{
+	_life = life;
 }
 
 const VECTOR2 Obj::Pos() const
