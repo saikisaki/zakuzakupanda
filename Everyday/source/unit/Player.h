@@ -11,7 +11,7 @@ public:
 	~Player();
 
 	UNIT GetUnit(void) override;
-	void SetMove(void) override;
+	void SetMove(Shared_Obj &player) override;
 	void Draw(void) override;
 
 private:

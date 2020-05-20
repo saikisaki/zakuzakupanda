@@ -30,29 +30,10 @@ void Player::Init(void)
 	_playerH = IMAGE_ID("image/player.png")[0];
 	_animCnt = 0;
 	_animKey = STATE::NORMAL;
+	_blastRange = 100;
 }
 
-bool Player::Explosion(void)
-{
-	_size = _animCnt / 3;
-
-	if (_size >= 100)
-	{
-		_size = _defSize;
-		return false;
-	}
-
-	_animCnt++;
-
-	return true;
-}
-
-UNIT Player::GetUnit(void)
-{
-	return UNIT::PLAYER;
-}
-
-void Player::SetMove(void)
+void Player::SetMove(Shared_Obj &player)
 {
 	if (_animKey == STATE::BOMB)
 	{
@@ -107,6 +88,26 @@ void Player::SetMove(void)
 	}
 }
 
+bool Player::Explosion(void)
+{
+	_size = _animCnt / 2;
+
+	if (_size >= _blastRange)
+	{
+		_size = _defSize;
+		return false;
+	}
+
+	_animCnt++;
+
+	return true;
+}
+
+UNIT Player::GetUnit(void)
+{
+	return UNIT::PLAYER;
+}
+
 void Player::Draw(void)
 {
 	if (_animKey == STATE::NORMAL
@@ -122,5 +123,5 @@ void Player::Draw(void)
 	{
 		// âΩÇ‡ÇµÇ»Ç¢
 	}
-	
+	DrawFormatString(20, 400, 0x00ff00, "écã@êîÅF%d", _life);
 }

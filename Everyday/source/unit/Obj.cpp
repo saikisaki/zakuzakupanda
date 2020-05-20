@@ -13,7 +13,7 @@ void Obj::Draw(void)
 {
 }
 
-void Obj::SetMove(void)
+void Obj::SetMove(Shared_Obj &player)
 {
 }
 
@@ -40,6 +40,16 @@ const int Obj::Life(void)
 void Obj::Life(const int life)
 {
 	_life = life;
+}
+
+const int Obj::BlastRange(void)
+{
+	return _blastRange;
+}
+
+void Obj::BlastRange(const int blast)
+{
+	_blastRange = blast;
 }
 
 const VECTOR2 Obj::Pos() const

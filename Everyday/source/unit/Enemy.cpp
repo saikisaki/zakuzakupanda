@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "Enemy.h"
 #include "../Mng/ImageMng.h"
+#include "../Mng/SceneMng.h"
 
 Enemy::Enemy()
 {
@@ -28,11 +29,11 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	float angle = atan2f(playerPos.y - _pos.y, playerPos.x - _pos.x);
 	_vel.x = cos(angle) * _speed;
 	_vel.y = sin(angle) * _speed;
-
-	lpImageMng.GetID("“G", "image/enemy2.png", { 48,48 }, { 4,3 });
+	_blastRange = 100;
+	_startPos = _pos;
+	lpImageMng.GetID("“G", "image/enemy.png", { 48,48 }, { 4,3 });
 
 	AnimVector data;
-
 	data.reserve(4);
 	data.emplace_back(IMAGE_ID("“G")[0], 10);
 	data.emplace_back(IMAGE_ID("“G")[1], 20);
@@ -42,12 +43,7 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	SetAnim(STATE::NORMAL, data);
 }
 
-UNIT Enemy::GetUnit(void)
-{
-	return UNIT::ENEMY;
-}
-
-void Enemy::SetMove(void)
+void Enemy::SetMove(Shared_Obj &player)
 {
 	if (_animKey == STATE::BOMB)
 	{
@@ -62,13 +58,19 @@ void Enemy::SetMove(void)
 	}
 
 	_pos += _vel;
+
+	if (OffScreen())
+	{
+		State(STATE::DEATH);
+	}
+
 }
 
 bool Enemy::Explosion(void)
 {
-	_size = _animCnt / 3;
+	_size = _animCnt / 2;
 
-	if (_size >= 100)
+	if (_size >= _blastRange)
 	{
 		_size = _defSize;
 		return false;
@@ -77,10 +79,24 @@ bool Enemy::Explosion(void)
 	return true;
 }
 
+UNIT Enemy::GetUnit(void)
+{
+	return UNIT::ENEMY;
+}
+
+bool Enemy::OffScreen()
+{
+	if (hypot(_pos.x - _startPos.x, _pos.y - _startPos.y) >= 2000)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 
 void Enemy::Draw(void)
 {
-
 	if (_animKey == STATE::BOMB)
 	{
 		DrawCircle(_pos.x, _pos.y, _size, 0xff0000, 0);
@@ -110,12 +126,6 @@ void Enemy::Draw(void)
 	if (_animCnt <= _animMap[_animKey][_animFram].second)
 	{
 		DrawRotaGraph(static_cast<int>(_pos.x), static_cast<int>(_pos.y), 1.5, 0, _animMap[_animKey][_animFram].first, true, false);
-	}
-		
-	
-	else
-	{
-		// ‰½‚à‚µ‚È‚¢
 	}
 
 	_animCnt++;

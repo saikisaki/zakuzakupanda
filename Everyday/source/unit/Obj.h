@@ -6,10 +6,10 @@
 
 enum class STATE	// キャラの現在の状態
 {
+	DEATH,		// 死
 	NORMAL,		// 通常
 	EX,			// 特殊
 	BOMB,		// 爆破
-	DEATH,		// 死
 	INVINCIBLE, // 無敵
 	MAX
 };
@@ -18,6 +18,7 @@ enum class UNIT
 {
 	PLAYER,		// プレイヤーユニット
 	ENEMY,		// 敵
+	ITEM,		// アイテム
 	MAX
 };
 
@@ -29,14 +30,17 @@ class Obj
 {
 public:
 	Obj();
-	~Obj();
+	virtual ~Obj();
 	virtual UNIT GetUnit(void) = 0;
 	virtual void Draw(void);
-	virtual void SetMove(void);
+	virtual void SetMove(Shared_Obj &player);
 	const STATE State(void);
 	void State(const STATE state);
 	const int Life(void);
 	void Life(const int life);
+	const int BlastRange(void);
+	void BlastRange(const int blast);
+
 	// 座標情報取得
 	const VECTOR2 Pos()const;
 	// サイズ情報取得
@@ -52,6 +56,7 @@ protected:
 	int _defSize;		// デフォルトの機体サイズ
 	STATE _animKey;		// アニメーションタイプ
 	int _animFram;		// アニメーションのフレーム数
+	int _blastRange;	// 最大爆風範囲
 	std::map<STATE, const AnimVector> _animMap;		// アニメーション情報を格納しているmap
 
 };

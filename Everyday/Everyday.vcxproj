@@ -129,6 +129,7 @@
     <ClCompile Include="source\Mng\SceneMng.cpp" />
     <ClCompile Include="source\scene\GameScene.cpp" />
     <ClCompile Include="source\unit\Enemy.cpp" />
+    <ClCompile Include="source\unit\Item.cpp" />
     <ClCompile Include="source\unit\Obj.cpp" />
     <ClCompile Include="source\unit\Player.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="source\scene\BaseScene.h" />
     <ClInclude Include="source\scene\GameScene.h" />
     <ClInclude Include="source\unit\Enemy.h" />
+    <ClInclude Include="source\unit\Item.h" />
     <ClInclude Include="source\unit\Obj.h" />
     <ClInclude Include="source\unit\Player.h" />
   </ItemGroup>
