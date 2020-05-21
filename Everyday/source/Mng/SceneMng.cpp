@@ -23,7 +23,7 @@ bool SceneMng::sysInit(void)
 	SetWindowText("StickHumanFighters");
 	if (DxLib_Init() == -1) return false;	// DX×²ÌÞ×Ø‰Šú‰»ˆ—
 	SetDrawScreen(DX_SCREEN_BACK);		// ‚Ð‚Æ‚Ü‚¸ÊÞ¯¸ÊÞ¯Ì§‚É•`‰æ
-
+	_frame = 0;
 	return true;
 }
 
@@ -34,9 +34,9 @@ void SceneMng::Run(void)
 	{
 		ClsDrawScreen();
 		activeScene = activeScene->UpDate(std::move(activeScene));
+		_frame++;
 		ScreenFlip();
 	}
-
 }
 
 const VECTOR2 SceneMng::GetScreenSize(void)

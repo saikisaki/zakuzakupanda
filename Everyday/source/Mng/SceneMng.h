@@ -15,7 +15,7 @@ public:
 	void Run(void);
 
 	const VECTOR2 GetScreenSize(void);
-
+	const int GetFrame(void) { return _frame; };
 	
 
 private:
@@ -23,7 +23,7 @@ private:
 	~SceneMng();
 
 	bool sysInit(void);
-
+	int _frame;
 	Unique_Base activeScene;	// äeº∞›Ç…±∏æΩÇ∑ÇÈÇΩÇﬂÇÃ’∆∞∏Œﬂ≤›¿∞
 	
 };

@@ -18,5 +18,6 @@ private:
 	
 	VECTOR2 _vel;
 	VECTOR2 _startPos;
+	float _angle;
 };
 

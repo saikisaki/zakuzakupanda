@@ -123,5 +123,4 @@ void Player::Draw(void)
 	{
 		// âΩÇ‡ÇµÇ»Ç¢
 	}
-	DrawFormatString(20, 400, 0x00ff00, "écã@êîÅF%d", _life);
 }

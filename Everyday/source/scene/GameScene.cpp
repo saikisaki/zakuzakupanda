@@ -4,6 +4,7 @@
 #include "../unit/Player.h"
 #include "../unit/Enemy.h"
 #include "../unit/Item.h"
+#include "../ui/Referee.h"
 #include "../Mng/SceneMng.h"
 
 #define PI 3.141592
@@ -21,9 +22,8 @@ void GameScene::Init(void)
 {
 	_frameCnt = 0;
 	srand((unsigned int)time(NULL));
-
+	_ui = std::make_unique<Referee>(VECTOR2(50,50 ), VECTOR2(lpSceneMng.GetScreenSize().x / 2 ,50 ));
 	_objList.emplace_back(std::make_shared<Player>(VECTOR2(lpSceneMng.GetScreenSize().x / 2 - 15, 350), 20));
-		
 }
 
 Unique_Base GameScene::UpDate(Unique_Base own)
@@ -46,10 +46,7 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 
 	}
 
-//\\\\\\\\\\\\\\
-
-//--------------------
-
+	_ui->TimeUpdate();
 
 	for (auto &obj : _objList)
 	{
@@ -62,6 +59,8 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 		obj->SetMove(_objList[0]);
 		obj->Draw();
 	}
+
+	_ui->Draw();
 
 	IsHit();
 
@@ -126,6 +125,7 @@ bool GameScene::IsHit()
 				{
 					obj2->State(STATE::BOMB);
 					_itemList.emplace_back(std::make_shared<Item>(obj1->Pos(), obj2->Pos()));
+					_ui->Point(_ui->Point() + 9);
 				}
 				else
 				{

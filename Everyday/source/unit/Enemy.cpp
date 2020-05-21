@@ -26,9 +26,9 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	_animFram = 0;
 	_animCnt = 0;
 	_speed = 3;
-	float angle = atan2f(playerPos.y - _pos.y, playerPos.x - _pos.x);
-	_vel.x = cos(angle) * _speed;
-	_vel.y = sin(angle) * _speed;
+	_angle = atan2f(playerPos.y - _pos.y, playerPos.x - _pos.x);
+	_vel.x = cos(_angle) * _speed;
+	_vel.y = sin(_angle) * _speed;
 	_blastRange = 100;
 	_startPos = _pos;
 	lpImageMng.GetID("“G", "image/enemy.png", { 48,48 }, { 4,3 });
@@ -125,7 +125,7 @@ void Enemy::Draw(void)
 
 	if (_animCnt <= _animMap[_animKey][_animFram].second)
 	{
-		DrawRotaGraph(static_cast<int>(_pos.x), static_cast<int>(_pos.y), 1.5, 0, _animMap[_animKey][_animFram].first, true, false);
+		DrawRotaGraph(static_cast<int>(_pos.x), static_cast<int>(_pos.y), 1.5, _angle, _animMap[_animKey][_animFram].first, true, false);
 	}
 
 	_animCnt++;
