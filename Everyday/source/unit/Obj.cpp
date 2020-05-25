@@ -22,7 +22,7 @@ const STATE Obj::State(void)
 	return _animKey;
 }
 
-void Obj::State(const STATE state)
+void Obj::State(const STATE &state)
 {
 	if (_animKey != state)
 	{
@@ -40,6 +40,11 @@ const int Obj::Life(void)
 void Obj::Life(const int life)
 {
 	_life = life;
+}
+
+void Obj::BombTag(const int & tag)
+{
+	_bombTag = tag;
 }
 
 const int Obj::BlastRange(void)

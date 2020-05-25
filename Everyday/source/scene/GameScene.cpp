@@ -108,8 +108,7 @@ bool GameScene::IsHit()
 		{
 			if (obj1 == obj2
 			 || obj2->State() != STATE::NORMAL
-			 || obj2->GetUnit() != UNIT::ENEMY
-			 /*|| obj1->GetUnit() == UNIT::ITEM*/)
+			 || obj2->GetUnit() != UNIT::ENEMY)
 			{
 				continue;
 			}
@@ -120,46 +119,30 @@ bool GameScene::IsHit()
 				 && obj1->State()   == STATE::NORMAL)
 				{
 					obj1->State(STATE::BOMB);
+					
+					_BombCount.emplace_back(obj1->BombTag());
+					obj1->BombTag(obj1->BombTag() + 1);
 				}
 				else if (obj1->State() == STATE::BOMB)
 				{
 					obj2->State(STATE::BOMB);
+					// 爆破数カウント
+					
+					_BombCount[obj2->BombTag()].emplace_back(std::make_pair(_BombCount[obj2->BombTag()].size() + 1, 
+															 obj2->Pos()));
+					obj2->BombTag(obj1->BombTag());
+					// アイテム生成
 					_itemList.emplace_back(std::make_shared<Item>(obj1->Pos(), obj2->Pos()));
-					_ui->Point(_ui->Point() + 9);
+					_ui->Point(_ui->Point() + 120);
 				}
 				else
 				{
 					// 何も処理しない
 				}
+				_ui->BombCnt(_BombCount);
 			}
 		}
 	}
 
 	return true;
-}
-
-bool GameScene::EnemyKillingMistake()
-{
-	/*for (auto &enemyA : _objList)
-	{
-		if (enemyA->GetUnit() == UNIT::ENEMY
-			&& enemyA->State() == STATE::BOMB)
-		{
-			for (auto &enemyB : _objList)
-			{
-				if (enemyA == enemyB
-					|| enemyB->State() != STATE::NORMAL)
-				{
-					continue;
-				}
-
-				if (CheckHit(enemyA->Pos(), enemyA->Size(), enemyB->Pos(), enemyB->Size()))
-				{
-					enemyB->State(STATE::BOMB);
-				}
-			}
-		}
-	}*/
-
-	return false;
 }

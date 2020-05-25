@@ -35,9 +35,11 @@ public:
 	virtual void Draw(void);
 	virtual void SetMove(Shared_Obj &player);
 	const STATE State(void);
-	void State(const STATE state);
+	void State(const STATE &state);
 	const int Life(void);
 	void Life(const int life);
+	const int BombTag(void) { return _bombTag; };
+	void BombTag(const int &tag);
 	const int BlastRange(void);
 	void BlastRange(const int blast);
 
@@ -58,6 +60,6 @@ protected:
 	int _animFram;		// アニメーションのフレーム数
 	int _blastRange;	// 最大爆風範囲
 	std::map<STATE, const AnimVector> _animMap;		// アニメーション情報を格納しているmap
-
+	int _bombTag;		// 自機のタグ
 };
 

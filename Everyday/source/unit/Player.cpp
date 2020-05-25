@@ -31,6 +31,7 @@ void Player::Init(void)
 	_animCnt = 0;
 	_animKey = STATE::NORMAL;
 	_blastRange = 100;
+	_bombTag = 0;
 }
 
 void Player::SetMove(Shared_Obj &player)

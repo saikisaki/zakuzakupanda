@@ -63,6 +63,11 @@ bool Referee::TimeUpdate(void)
 	return true;
 }
 
+void Referee::BombCnt(const BombVec & bomb)
+{
+	_bombCnt = bomb;
+}
+
 const int Referee::Point(void)
 {
 	int point = 0;
@@ -73,15 +78,26 @@ const int Referee::Point(void)
 		{
 			point += p * std::pow(10, count);
 		}
+		else
+		{
+			point += p;
+		}
 		count++;
 	}
-
+	
 	return point;
 }
 
 void Referee::Point(const int & p)
 {
 	int point = p;
+
+	// ƒJƒ“ƒXƒgˆ—
+	if (point >= 1000)
+	{
+		point = 999;
+	}
+
 	for (auto &num : _pointArray)
 	{
 		if (point == 0)
@@ -103,9 +119,17 @@ void Referee::Draw(void)
 	}
 
 	digits = 1;
-	for (auto &point : _timeArray)
+	for (auto &time : _timeArray)
 	{
-		DrawGraph(_timePos.x - _size.x * digits, _timePos.y, _numArray[point], true);
+		DrawGraph(_timePos.x - _size.x * digits, _timePos.y, _numArray[time], true);
 		digits++;
+	}
+
+	for (auto &bomb : _bombCnt)
+	{
+		for (auto &bNum : bomb)
+		{
+			DrawFormatString(bNum.second.x, bNum.second.y, 0xaaaaaa, "%d", bNum.first);
+		}
 	}
 }

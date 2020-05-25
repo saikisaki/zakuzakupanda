@@ -30,6 +30,7 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	_vel.x = cos(_angle) * _speed;
 	_vel.y = sin(_angle) * _speed;
 	_blastRange = 100;
+	_bombTag = 0;
 	_startPos = _pos;
 	lpImageMng.GetID("“G", "image/enemy.png", { 48,48 }, { 4,3 });
 
