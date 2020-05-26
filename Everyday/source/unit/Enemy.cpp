@@ -4,14 +4,17 @@
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"
 
+#define PI    3.141592
+
 Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(const VECTOR2 &pos, const int &size,const VECTOR2 &playerPos)
+Enemy::Enemy(const VECTOR2 &pos, const int &size,const VECTOR2 &playerPos, const ENEM_TYPE &type)
 {
 	_pos = pos;
 	_size = size;
+	_type = type;
 	Init(playerPos);
 }
 
@@ -32,16 +35,31 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	_blastRange = 100;
 	_bombTag = 0;
 	_startPos = _pos;
-	lpImageMng.GetID("敵", "image/enemy.png", { 48,48 }, { 4,3 });
 
-	AnimVector data;
-	data.reserve(4);
-	data.emplace_back(IMAGE_ID("敵")[0], 10);
-	data.emplace_back(IMAGE_ID("敵")[1], 20);
-	data.emplace_back(IMAGE_ID("敵")[2], 30);
-	data.emplace_back(IMAGE_ID("敵")[3], 40);
+	if (_type == ENEM_TYPE::ZAKO)
+	{
+		lpImageMng.GetID("ザコ", "image/enemy.png", { 48,48 }, { 4,3 });
+		AnimVector data;
+		data.reserve(4);
+		data.emplace_back(IMAGE_ID("ザコ")[0], 10);
+		data.emplace_back(IMAGE_ID("ザコ")[1], 20);
+		data.emplace_back(IMAGE_ID("ザコ")[2], 30);
+		data.emplace_back(IMAGE_ID("ザコ")[3], 40);
 
-	SetAnim(STATE::NORMAL, data);
+		SetAnim(STATE::NORMAL, data);
+	}
+	else if (_type == ENEM_TYPE::BOSS)
+	{
+		lpImageMng.GetID("ボス", "image/boss.png");
+		AnimVector data;
+		data.reserve(1);
+		data.emplace_back(IMAGE_ID("ボス")[0], 40);
+		SetAnim(STATE::NORMAL, data);
+	}
+	else
+	{
+		// 何もしない
+	}
 }
 
 void Enemy::SetMove(Shared_Obj &player)
@@ -64,7 +82,6 @@ void Enemy::SetMove(Shared_Obj &player)
 	{
 		State(STATE::DEATH);
 	}
-
 }
 
 bool Enemy::Explosion(void)
@@ -85,7 +102,7 @@ UNIT Enemy::GetUnit(void)
 	return UNIT::ENEMY;
 }
 
-bool Enemy::OffScreen()
+bool Enemy::OffScreen(void)
 {
 	if (hypot(_pos.x - _startPos.x, _pos.y - _startPos.y) >= 2000)
 	{
@@ -95,6 +112,23 @@ bool Enemy::OffScreen()
 	return false;
 }
 
+bool Enemy::DrawMagic(void)
+{
+	int rotate = PI / 180 * (_animCnt * 3);
+	_size = _animCnt / 2 * 0.1;
+	if (_size >= 1)
+	{
+		_size = 1;
+	}
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
+	SetDrawBright(255, 0, 255);
+	DrawRotaGraph(_pos.x,_pos.y, _size, rotate, lpImageMng.GetID("image/magic.png")[0],true);
+	SetDrawBright(255, 255, 255);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+
+	return true;
+}
 
 void Enemy::Draw(void)
 {

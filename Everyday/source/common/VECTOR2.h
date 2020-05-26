@@ -27,8 +27,8 @@ public:
 	// íPçÄââéZéq
 	VECTOR2& operator += (const VECTOR2& vec);
 	VECTOR2& operator -= (const VECTOR2& vec);
-	VECTOR2& operator *= (int k);
-	VECTOR2& operator /= (int k);
+	VECTOR2& operator *= (float k);
+	VECTOR2& operator /= (float k);
 	VECTOR2  operator+() const;
 	VECTOR2  operator-() const;
 };

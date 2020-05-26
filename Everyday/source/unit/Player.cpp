@@ -92,13 +92,12 @@ void Player::SetMove(Shared_Obj &player)
 bool Player::Explosion(void)
 {
 	_size = _animCnt / 2;
-
+	_size += _size * 0.1 / 108;
 	if (_size >= _blastRange)
 	{
 		_size = _defSize;
 		return false;
 	}
-
 	_animCnt++;
 
 	return true;
@@ -118,7 +117,12 @@ void Player::Draw(void)
 	}
 	else if (_animKey == STATE::BOMB)
 	{
-		DrawCircle(_pos.x, _pos.y, _size,0xff0000,0);
+		//DrawCircle(_pos.x, _pos.y, _size,0xff0000,0);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200 - std::abs(_animCnt % 120 - 60));
+		SetDrawBright(255, 0, 0);
+		DrawRotaGraph(_pos.x, _pos.y, _size,0, IMAGE_ID("image/bomb.png")[0],true);
+		SetDrawBright(255, 255, 255);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	}
 	else
 	{

@@ -1,11 +1,19 @@
 #pragma once
 #include "Obj.h"
+
+enum class ENEM_TYPE
+{
+	BOSS,
+	ZAKO,
+	MAX
+};
+
 class Enemy :
 	public Obj
 {
 public:
 	Enemy();
-	Enemy(const VECTOR2 &pos, const int &size,const VECTOR2 &playerPos);
+	Enemy(const VECTOR2 &pos, const int &size,const VECTOR2 &playerPos,const ENEM_TYPE &type);
 	~Enemy();
 
 	UNIT GetUnit(void) override;
@@ -14,10 +22,11 @@ public:
 private:
 	void Init(const VECTOR2 &playerPos);
 	bool Explosion(void);
-	bool OffScreen();
-	
+	bool OffScreen(void);
+	bool DrawMagic(void);
 	VECTOR2 _vel;
 	VECTOR2 _startPos;
 	float _angle;
+	ENEM_TYPE _type;
 };
 

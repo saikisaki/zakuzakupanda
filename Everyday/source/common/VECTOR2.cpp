@@ -67,14 +67,14 @@ VECTOR2 & VECTOR2::operator-=(const VECTOR2 & vec)
 	return (*this);
 }
 
-VECTOR2 & VECTOR2::operator*=(int k)
+VECTOR2 & VECTOR2::operator*=(float k)
 {
 	this->x *= k;
 	this->y *= k;
 	return (*this);
 }
 
-VECTOR2 & VECTOR2::operator/=(int k)
+VECTOR2 & VECTOR2::operator/=(float k)
 {
 	// ’:¶Ş°ÄŞˆ—‚ª•K—v‚Èê‡‚ª‚ ‚é
 
