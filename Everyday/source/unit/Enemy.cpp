@@ -25,7 +25,7 @@ Enemy::~Enemy()
 
 void Enemy::Init(const VECTOR2 &playerPos)
 {
-	_animKey = STATE::NORMAL;
+	
 	_animFram = 0;
 	_animCnt = 0;
 	_speed = 3;
@@ -35,9 +35,12 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	_blastRange = 100;
 	_bombTag = 0;
 	_startPos = _pos;
+	_rotateCnt = 0;
+	_circleSize = 0;
 
 	if (_type == ENEM_TYPE::ZAKO)
 	{
+		_animKey = STATE::NORMAL;
 		lpImageMng.GetID("ザコ", "image/enemy.png", { 48,48 }, { 4,3 });
 		AnimVector data;
 		data.reserve(4);
@@ -50,6 +53,7 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	}
 	else if (_type == ENEM_TYPE::BOSS)
 	{
+		_animKey = STATE::INVINCIBLE;
 		lpImageMng.GetID("ボス", "image/boss.png");
 		AnimVector data;
 		data.reserve(1);
@@ -76,7 +80,10 @@ void Enemy::SetMove(Shared_Obj &player)
 		}
 	}
 
-	_pos += _vel;
+	if (_type == ENEM_TYPE::ZAKO)
+	{
+		_pos += _vel;
+	}
 
 	if (OffScreen())
 	{
@@ -114,24 +121,34 @@ bool Enemy::OffScreen(void)
 
 bool Enemy::DrawMagic(void)
 {
-	int rotate = PI / 180 * (_animCnt * 3);
-	_size = _animCnt / 2 * 0.1;
-	if (_size >= 1)
+	int rotate = PI / 180 * (_rotateCnt * 22);
+
+	if (_circleSize >= 1)
 	{
-		_size = 1;
+		_circleSize = 1;
+		_animKey = STATE::NORMAL;
+	}
+	else
+	{
+		_circleSize = _rotateCnt * 0.005;
 	}
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
-	SetDrawBright(255, 0, 255);
-	DrawRotaGraph(_pos.x,_pos.y, _size, rotate, lpImageMng.GetID("image/magic.png")[0],true);
+	SetDrawBlendMode(DX_BLENDMODE_ADD, 200);
+	SetDrawBright(200, 0, 200);
+	DrawRotaGraph(_pos.x,_pos.y, _circleSize, rotate, lpImageMng.GetID("image/magic.png")[0],true);
 	SetDrawBright(255, 255, 255);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-
+	_rotateCnt++;
 	return true;
 }
 
 void Enemy::Draw(void)
 {
+	if (_type == ENEM_TYPE::BOSS)
+	{
+		DrawMagic();
+	}
+	
 	if (_animKey == STATE::BOMB)
 	{
 		DrawCircle(_pos.x, _pos.y, _size, 0xff0000, 0);

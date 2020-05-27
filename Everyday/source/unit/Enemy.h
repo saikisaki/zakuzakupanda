@@ -28,5 +28,7 @@ private:
 	VECTOR2 _startPos;
 	float _angle;
 	ENEM_TYPE _type;
+	int _rotateCnt;
+	float _circleSize;
 };
 

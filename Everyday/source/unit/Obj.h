@@ -51,7 +51,7 @@ public:
 protected:
 	bool SetAnim(const STATE key, AnimVector &data);
 	VECTOR2 _pos;		// 座標
-	int _size;			// キャラの大きさ(半径)
+	float _size;			// キャラの大きさ(半径)
 	int _speed;			// 移動速度
 	int _life;			// 機体の残機
 	int _animCnt;		// アニメーションカウンター

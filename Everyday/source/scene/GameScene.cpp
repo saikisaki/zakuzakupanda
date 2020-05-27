@@ -24,6 +24,7 @@ void GameScene::Init(void)
 	srand((unsigned int)time(NULL));
 	_ui = std::make_unique<Referee>(VECTOR2(50,50 ), VECTOR2(lpSceneMng.GetScreenSize().x / 2 ,50 ));
 	_objList.emplace_back(std::make_shared<Player>(VECTOR2(lpSceneMng.GetScreenSize().x / 2 - 15, 350), 20));
+	_objList.emplace_back(std::make_shared<Enemy>(VECTOR2(lpSceneMng.GetScreenSize().x / 2 -50, 100),50, _objList[0]->Pos(), ENEM_TYPE::BOSS));
 }
 
 Unique_Base GameScene::UpDate(Unique_Base own)
@@ -37,7 +38,7 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 		pos.x += cos((angle % 360 + 1) * PI / 180) * 1000;
 		pos.y += sin((angle % 360 + 1) * PI / 180) * 1000;
 
-		_objList.emplace_back(std::make_shared<Enemy>(pos, 20, _objList[0]->Pos()));
+		_objList.emplace_back(std::make_shared<Enemy>(pos, 20, _objList[0]->Pos(),ENEM_TYPE::ZAKO));
 
 		if (pos.x > 0 && pos.x < lpSceneMng.GetScreenSize().x && pos.y > 0 && pos.y < lpSceneMng.GetScreenSize().y)
 		{
