@@ -19,6 +19,7 @@ enum class UNIT
 	PLAYER,		// プレイヤーユニット
 	ENEMY,		// 敵
 	ITEM,		// アイテム
+	SHOT,		// 弾
 	MAX
 };
 

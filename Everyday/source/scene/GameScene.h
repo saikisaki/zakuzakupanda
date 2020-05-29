@@ -15,7 +15,7 @@ public:
 	GameScene();
 	~GameScene();
 	
-	Unique_Base UpDate(Unique_Base own);		// –ˆÌÚ°Ñˆ—‚·‚é‚à‚Ì‚ğ‚Ü‚Æ‚ß‚½ŠÖ”
+	Unique_Base UpDate(Unique_Base own)override;		// –ˆÌÚ°Ñˆ—‚·‚é‚à‚Ì‚ğ‚Ü‚Æ‚ß‚½ŠÖ”
 private:
 	bool CheckHit(const VECTOR2& posA, float radiusA, const VECTOR2& posB, float radiusB);
 	void Init(void)override;

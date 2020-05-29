@@ -1,6 +1,6 @@
 #include "Dxlib.h"	// DxLib×²ÌÞ×Ø‚ðŽg—p‚·‚é
 #include "SceneMng.h"
-#include "../scene/GameScene.h"
+#include "../scene/TitleScene.h"
 
 #define SCREEN_SIZE_X (1280)
 #define SCREEN_SIZE_Y (720)
@@ -29,7 +29,7 @@ bool SceneMng::sysInit(void)
 
 void SceneMng::Run(void)
 {
-	activeScene = std::make_unique<GameScene>();
+	activeScene = std::make_unique<TitleScene>();
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		ClsDrawScreen();

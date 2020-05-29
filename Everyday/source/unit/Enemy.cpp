@@ -3,8 +3,9 @@
 #include "Enemy.h"
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"
+#include "BossMove.h"
+#include "Shot.h"
 
-#define PI    3.141592
 
 Enemy::Enemy()
 {
@@ -32,6 +33,7 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	_angle = atan2f(playerPos.y - _pos.y, playerPos.x - _pos.x);
 	_vel.x = cos(_angle) * _speed;
 	_vel.y = sin(_angle) * _speed;
+	_angle += -90 * (DX_PI / 180);
 	_blastRange = 100;
 	_bombTag = 0;
 	_startPos = _pos;
@@ -53,6 +55,7 @@ void Enemy::Init(const VECTOR2 &playerPos)
 	}
 	else if (_type == ENEM_TYPE::BOSS)
 	{
+		_bossData = std::make_unique<BossMove>(_pos, _size, 0, _speed);
 		_animKey = STATE::INVINCIBLE;
 		lpImageMng.GetID("ƒ{ƒX", "image/boss.png");
 		AnimVector data;
@@ -83,6 +86,11 @@ void Enemy::SetMove(Shared_Obj &player)
 	if (_type == ENEM_TYPE::ZAKO)
 	{
 		_pos += _vel;
+	}
+	else if (_type == ENEM_TYPE::BOSS)
+	{
+		_bossData->SetMove(_pos);
+		_pos = _bossData->GetPos();
 	}
 
 	if (OffScreen())
@@ -121,16 +129,16 @@ bool Enemy::OffScreen(void)
 
 bool Enemy::DrawMagic(void)
 {
-	int rotate = PI / 180 * (_rotateCnt * 22);
+	int rotate = DX_PI / 180 * (_rotateCnt * 22);
 
-	if (_circleSize >= 1)
-	{
-		_circleSize = 1;
-		_animKey = STATE::NORMAL;
-	}
-	else
+	if(_animKey == STATE::INVINCIBLE)
 	{
 		_circleSize = _rotateCnt * 0.005;
+		if (_circleSize >= 1)
+		{
+			_circleSize = 1;
+			_animKey = STATE::NORMAL;
+		}
 	}
 
 	SetDrawBlendMode(DX_BLENDMODE_ADD, 200);

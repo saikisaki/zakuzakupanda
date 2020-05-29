@@ -128,11 +128,14 @@
     <ClCompile Include="source\Mng\ImageMng.cpp" />
     <ClCompile Include="source\Mng\SceneMng.cpp" />
     <ClCompile Include="source\scene\GameScene.cpp" />
+    <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\ui\Referee.cpp" />
+    <ClCompile Include="source\unit\BossMove.cpp" />
     <ClCompile Include="source\unit\Enemy.cpp" />
     <ClCompile Include="source\unit\Item.cpp" />
     <ClCompile Include="source\unit\Obj.cpp" />
     <ClCompile Include="source\unit\Player.cpp" />
+    <ClCompile Include="source\unit\Shot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\common\VECTOR2.h" />
@@ -141,11 +144,14 @@
     <ClInclude Include="source\Mng\SceneMng.h" />
     <ClInclude Include="source\scene\BaseScene.h" />
     <ClInclude Include="source\scene\GameScene.h" />
+    <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\ui\Referee.h" />
+    <ClInclude Include="source\unit\BossMove.h" />
     <ClInclude Include="source\unit\Enemy.h" />
     <ClInclude Include="source\unit\Item.h" />
     <ClInclude Include="source\unit\Obj.h" />
     <ClInclude Include="source\unit\Player.h" />
+    <ClInclude Include="source\unit\Shot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

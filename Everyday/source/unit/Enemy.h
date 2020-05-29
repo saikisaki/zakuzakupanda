@@ -1,6 +1,8 @@
 #pragma once
 #include "Obj.h"
 
+class BossMove;
+
 enum class ENEM_TYPE
 {
 	BOSS,
@@ -24,11 +26,14 @@ private:
 	bool Explosion(void);
 	bool OffScreen(void);
 	bool DrawMagic(void);
+
+
 	VECTOR2 _vel;
 	VECTOR2 _startPos;
 	float _angle;
 	ENEM_TYPE _type;
 	int _rotateCnt;
 	float _circleSize;
+	std::unique_ptr<BossMove> _bossData;
 };
 
