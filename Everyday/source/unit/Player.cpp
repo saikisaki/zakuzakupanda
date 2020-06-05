@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "DxLib.h"
+#include <DxLib.h>
 #include "Player.h"
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"
@@ -9,7 +9,7 @@ Player::Player()
 	Init();
 }
 
-Player::Player(const VECTOR2& pos, const int& size)
+Player::Player(const VECTOR2& pos, const int size)
 {
 	_pos = pos;
 	_size = size;

@@ -1,5 +1,5 @@
 #include <cmath>
-#include "DxLib.h"
+#include <DxLib.h>
 #include "Referee.h"
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"
@@ -45,14 +45,14 @@ bool Referee::TimeUpdate(void)
 {
 	int time = lpSceneMng.GetFrame() / 60;
 
-	if (_time > 180)
+	if (time > 10)
 	{
 		return false;
 	}
 
 	for (auto &num : _timeArray)
 	{
-		if (time == 0)
+		if (time == 180)
 		{
 			break;
 		}
@@ -88,7 +88,7 @@ const int Referee::Point(void)
 	return point;
 }
 
-void Referee::Point(const int & p)
+void Referee::Point(const int  p)
 {
 	int point = p;
 

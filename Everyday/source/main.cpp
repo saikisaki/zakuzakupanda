@@ -1,4 +1,4 @@
-#include "Dxlib.h"	// DxLibﾗｲﾌﾞﾗﾘを使用する
+#include <Dxlib.h>	// DxLibﾗｲﾌﾞﾗﾘを使用する
 #include "Mng/SceneMng.h"
 
 // ---------- WinMain関数

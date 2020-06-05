@@ -7,7 +7,7 @@ class Player :
 {
 public:
 	Player();
-	Player(const VECTOR2& pos, const int& size);
+	Player(const VECTOR2& pos, const int size);
 	~Player();
 
 	UNIT GetUnit(void) override;

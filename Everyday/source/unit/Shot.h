@@ -6,7 +6,7 @@ class Shot :
 {
 public:
 	Shot();
-	Shot(const VECTOR2 &pos,const float &speed,const float &angle,const float &size);
+	Shot(const VECTOR2 &pos,const VECTOR2 &bossPos,const float speed,const float angle,const float size);
 	~Shot();
 
 	UNIT GetUnit(void) override;
@@ -16,6 +16,7 @@ private:
 	void Init(void);
 	
 	float _angle;
+	VECTOR2 _bossPos;
 	VECTOR2 _vel;
 };
 

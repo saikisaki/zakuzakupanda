@@ -1,6 +1,6 @@
 #include <cmath>
 #include <time.h>
-#include "DxLib.h"
+#include <DxLib.h>
 #include "Item.h"
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"

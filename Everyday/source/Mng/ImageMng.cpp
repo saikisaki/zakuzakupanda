@@ -1,5 +1,5 @@
 #include <string>
-#include "DxLib.h"
+#include <DxLib.h>
 #include "../common/VECTOR2.h"
 #include "ImageMng.h"
 

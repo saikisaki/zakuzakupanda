@@ -7,7 +7,7 @@
 
 SceneMng::SceneMng()
 {
-	sysInit();
+	SystemInit();
 }
 
 
@@ -15,7 +15,7 @@ SceneMng::~SceneMng()
 {
 }
 
-bool SceneMng::sysInit(void)
+bool SceneMng::SystemInit(void)
 {
 	// ºΩ√—èàóù
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 16);		// 65536êF”∞ƒﬁÇ…ê›íË
@@ -42,4 +42,9 @@ void SceneMng::Run(void)
 const VECTOR2 SceneMng::GetScreenSize(void)
 {
 	return VECTOR2(SCREEN_SIZE_X, SCREEN_SIZE_Y);
+}
+
+void SceneMng::ResetFrame(void)
+{
+	_frame = 0;
 }

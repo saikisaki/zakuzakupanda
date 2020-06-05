@@ -1,5 +1,5 @@
 #include <cmath>
-#include "DxLib.h"
+#include <DxLib.h>
 #include "Enemy.h"
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"
@@ -11,7 +11,7 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(const VECTOR2 &pos, const int &size,const VECTOR2 &playerPos, const ENEM_TYPE &type)
+Enemy::Enemy(const VECTOR2 &pos, const int size,const VECTOR2 &playerPos, const ENEM_TYPE &type)
 {
 	_pos = pos;
 	_size = size;

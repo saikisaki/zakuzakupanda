@@ -23,7 +23,7 @@ private:
 	std::unique_ptr<Referee> _ui;
 	std::vector<Shared_Obj> _objList;		// キャラクターを管理するList
 	std::vector<Shared_Obj> _itemList;
-	BombVec _BombCount;
+	BombVec _bombCount;
 
 	int _frameCnt;
 };

@@ -1,3 +1,4 @@
+#include <cmath>
 #include "DxLib.h"
 #include "Shot.h"
 #include "../Mng/ImageMng.h"
@@ -5,18 +6,22 @@
 
 Shot::Shot()
 {
+	Init();
 }
 
-Shot::Shot(const VECTOR2 & pos, const float & speed, const float & angle, const float & size)
+Shot::Shot(const VECTOR2 & pos, const VECTOR2 &bossPos, const float  speed, const float  angle, const float  size)
 {
 	_pos = pos;
+	_bossPos = bossPos;
 	_speed = speed;
 	_angle = angle;
 	_size = size;
+	Init();
 }
 
 void Shot::Init(void)
 {
+	_angle = atan2f(_pos.y - _bossPos.y, _pos.x - _bossPos.x);
 	_vel.x = cos(_angle) * _speed;
 	_vel.y = sin(_angle) * _speed;
 }

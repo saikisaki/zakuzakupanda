@@ -6,6 +6,7 @@
 #include "../unit/Item.h"
 #include "../ui/Referee.h"
 #include "../Mng/SceneMng.h"
+#include "ResultScene.h"
 
 #define PI 3.141592
 
@@ -21,6 +22,7 @@ GameScene::~GameScene()
 void GameScene::Init(void)
 {
 	_frameCnt = 0;
+	lpSceneMng.ResetFrame();
 	srand((unsigned int)time(NULL));
 	_ui = std::make_unique<Referee>(VECTOR2(50,50 ), VECTOR2(lpSceneMng.GetScreenSize().x / 2 ,50 ));
 	_objList.emplace_back(std::make_shared<Player>(VECTOR2(lpSceneMng.GetScreenSize().x / 2 - 15, 350), 20));
@@ -47,7 +49,10 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 
 	}
 
-	_ui->TimeUpdate();
+	if (!_ui->TimeUpdate())
+	{
+		return std::make_unique<ResultScene>(_ui->Point());
+	}
 
 	for (auto &obj : _objList)
 	{
@@ -121,7 +126,7 @@ bool GameScene::IsHit()
 				{
 					obj1->State(STATE::BOMB);
 					
-					_BombCount.emplace_back(obj1->BombTag());
+					_bombCount.emplace_back(obj1->BombTag());
 					obj1->BombTag(obj1->BombTag() + 1);
 				}
 				else if (obj1->State() == STATE::BOMB)
@@ -129,7 +134,7 @@ bool GameScene::IsHit()
 					obj2->State(STATE::BOMB);
 					// 爆破数カウント
 					
-					_BombCount[obj2->BombTag()].emplace_back(std::make_pair(_BombCount[obj2->BombTag()].size() + 1, 
+					_bombCount[obj2->BombTag()].emplace_back(std::make_pair(_bombCount[obj2->BombTag()].size() + 1, 
 															 obj2->Pos()));
 					obj2->BombTag(obj1->BombTag());
 					// アイテム生成
@@ -140,7 +145,7 @@ bool GameScene::IsHit()
 				{
 					// 何も処理しない
 				}
-				_ui->BombCnt(_BombCount);
+				_ui->BombCnt(_bombCount);
 			}
 		}
 	}
