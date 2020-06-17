@@ -15,7 +15,7 @@ class BossMove
 {
 public:
 	BossMove();
-	BossMove(const VECTOR2 &pos, const float size, const float angle,const float speed);
+	BossMove(const VECTOR2 &pos,float size,float angle,float speed);
 	~BossMove();
 
 	const VECTOR2 GetPos(void) { return _pos; };

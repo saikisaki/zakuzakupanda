@@ -9,7 +9,7 @@ Shot::Shot()
 	Init();
 }
 
-Shot::Shot(const VECTOR2 & pos, const VECTOR2 &bossPos, const float  speed, const float  angle, const float  size)
+Shot::Shot(const VECTOR2 & pos, const VECTOR2 &bossPos,float  speed,float  angle,float  size)
 {
 	_pos = pos;
 	_bossPos = bossPos;

@@ -9,7 +9,7 @@ Player::Player()
 	Init();
 }
 
-Player::Player(const VECTOR2& pos, const int size)
+Player::Player(const VECTOR2& pos,int size)
 {
 	_pos = pos;
 	_size = size;

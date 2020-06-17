@@ -32,7 +32,7 @@ const VEC_INT& ImageMng::GetID(const std::string& key, const std::string& f_name
 	return imgMap[key];								// imgMap[f_name]‚ð•Ô‚·
 }
 
-const VEC_INT& ImageMng::GetID(const std::string& key, const std::string& f_name, VECTOR2 divSize, VECTOR2 divCut)
+const VEC_INT& ImageMng::GetID(const std::string& key, const std::string& f_name,const VECTOR2& divSize,const VECTOR2& divCut)
 {
 	if (imgMap.find(key) == imgMap.end())
 	{

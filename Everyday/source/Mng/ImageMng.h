@@ -21,7 +21,7 @@ public:
 
 	const VEC_INT& GetID(const std::string& key);
 	const VEC_INT& GetID(const std::string& key, const std::string& fileName);									// 画像のﾊﾝﾄﾞﾙを参照するための関数 ( LoadGraph用 )
-	const VEC_INT& GetID(const std::string& key, const std::string& fileName, VECTOR2 divSize, VECTOR2 divCut);		// 画像のﾊﾝﾄﾞﾙを参照するための関数 ( LoadDivGraph用 )
+	const VEC_INT& GetID(const std::string& key, const std::string& fileName,const VECTOR2& divSize,const VECTOR2& divCut);		// 画像のﾊﾝﾄﾞﾙを参照するための関数 ( LoadDivGraph用 )
 
 private:
 	ImageMng();

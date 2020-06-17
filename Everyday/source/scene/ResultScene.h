@@ -6,7 +6,7 @@ class ResultScene :
 {
 public:
 	ResultScene();
-	ResultScene(const int defeatNum);
+	ResultScene(int defeatNum);
 	~ResultScene();
 
 	Unique_Base UpDate(Unique_Base own)override;

@@ -12,7 +12,7 @@ BossMove::BossMove()
 	Init();
 }
 
-BossMove::BossMove(const VECTOR2 & pos, const float  size, const float angle, const float speed)
+BossMove::BossMove(const VECTOR2 & pos, float  size, float angle,float speed)
 {
 	_pos = pos;
 	_size = size;

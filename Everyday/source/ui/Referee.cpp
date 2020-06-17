@@ -88,7 +88,7 @@ const int Referee::Point(void)
 	return point;
 }
 
-void Referee::Point(const int  p)
+void Referee::Point(int  p)
 {
 	int point = p;
 

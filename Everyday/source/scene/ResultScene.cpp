@@ -7,7 +7,7 @@ ResultScene::ResultScene()
 {
 }
 
-ResultScene::ResultScene(const int defeatNum)
+ResultScene::ResultScene(int defeatNum)
 {
 	_defeatNum = defeatNum;
 }

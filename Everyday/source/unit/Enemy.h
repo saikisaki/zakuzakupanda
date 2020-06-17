@@ -15,7 +15,7 @@ class Enemy :
 {
 public:
 	Enemy();
-	Enemy(const VECTOR2 &pos, const int size,const VECTOR2 &playerPos,const ENEM_TYPE &type);
+	Enemy(const VECTOR2 &pos,int size,const VECTOR2 &playerPos,ENEM_TYPE type);
 	~Enemy();
 
 	UNIT GetUnit(void) override;

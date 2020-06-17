@@ -38,11 +38,11 @@ public:
 	const STATE State(void);
 	void State(const STATE &state);
 	const int Life(void);
-	void Life(const int life);
+	void Life(int life);
 	const int BombTag(void) { return _bombTag; };
-	void BombTag(const int &tag);
+	void BombTag(int tag);
 	const int BlastRange(void);
-	void BlastRange(const int blast);
+	void BlastRange(int blast);
 
 	// 座標情報取得
 	const VECTOR2 Pos()const;
@@ -50,7 +50,7 @@ public:
 	const int Size()const;
 
 protected:
-	bool SetAnim(const STATE key, AnimVector &data);
+	bool SetAnim(const STATE& key, AnimVector &data);
 	VECTOR2 _pos;		// 座標
 	float _size;			// キャラの大きさ(半径)
 	int _speed;			// 移動速度

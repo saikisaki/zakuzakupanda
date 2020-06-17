@@ -12,7 +12,7 @@ public:
 	~Referee();
 
 	const int Point(void);
-	void Point(const int point);
+	void Point(int point);
 	bool TimeUpdate(void);
 	void BombCnt(const BombVec &bomb);
 	void Draw(void);

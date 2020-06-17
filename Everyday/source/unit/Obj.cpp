@@ -37,12 +37,12 @@ const int Obj::Life(void)
 	return _life;
 }
 
-void Obj::Life(const int life)
+void Obj::Life(int life)
 {
 	_life = life;
 }
 
-void Obj::BombTag(const int & tag)
+void Obj::BombTag(int tag)
 {
 	_bombTag = tag;
 }
@@ -52,7 +52,7 @@ const int Obj::BlastRange(void)
 	return _blastRange;
 }
 
-void Obj::BlastRange(const int blast)
+void Obj::BlastRange(int blast)
 {
 	_blastRange = blast;
 }
@@ -67,7 +67,7 @@ const int Obj::Size() const
 	return _size;
 }
 
-bool Obj::SetAnim(const STATE key, AnimVector & data)
+bool Obj::SetAnim(const STATE& key, AnimVector & data)
 {
 	return _animMap.try_emplace(key, std::move(data)).second;
 }

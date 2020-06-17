@@ -11,7 +11,7 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(const VECTOR2 &pos, const int size,const VECTOR2 &playerPos, const ENEM_TYPE &type)
+Enemy::Enemy(const VECTOR2 &pos, int size,const VECTOR2 &playerPos, ENEM_TYPE type)
 {
 	_pos = pos;
 	_size = size;
