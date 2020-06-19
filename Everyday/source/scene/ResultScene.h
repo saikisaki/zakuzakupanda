@@ -12,7 +12,8 @@ public:
 	Unique_Base UpDate(Unique_Base own)override;
 private:
 	void Init(void)override;
-	int _defeatNum;
 	void Draw();
+
+	int _defeatNum;		// ‘Œ‚”jƒ|ƒCƒ“ƒg
 };
 

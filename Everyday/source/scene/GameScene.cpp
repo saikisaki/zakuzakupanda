@@ -23,6 +23,7 @@ void GameScene::Init(void)
 {
 	_frameCnt = 0;
 	lpSceneMng.ResetFrame();
+	_bombCount.reserve(100);
 	srand((unsigned int)time(NULL));
 	_ui = std::make_unique<Referee>(VECTOR2(50,50 ), VECTOR2(lpSceneMng.GetScreenSize().x / 2 ,50 ));
 	_objList.emplace_back(std::make_shared<Player>(VECTOR2(lpSceneMng.GetScreenSize().x / 2 - 15, 350), 20));
@@ -66,7 +67,7 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 		obj->Draw();
 	}
 
-	_ui->Draw();
+
 
 	IsHit();
 
@@ -82,7 +83,6 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 		});
 	_objList.erase(death_itr, _objList.end());
 
-	// 死亡した敵の要素を削除
 	auto erase_itr = std::remove_if(_itemList.begin(), _itemList.end(), [](std::shared_ptr<Obj> obj) 
 		{
 			if (obj->State() == STATE::DEATH)
@@ -93,6 +93,7 @@ Unique_Base GameScene::UpDate(Unique_Base own)
 		});
 	_itemList.erase(erase_itr, _itemList.end());
 
+	_ui->Draw();
 	_frameCnt++;
 
 	return std::move(own);
@@ -133,10 +134,8 @@ bool GameScene::IsHit()
 				{
 					obj2->State(STATE::BOMB);
 					// 爆破数カウント
-					
-					_bombCount[obj2->BombTag()].emplace_back(std::make_pair(_bombCount[obj2->BombTag()].size() + 1, 
-															 obj2->Pos()));
-					obj2->BombTag(obj1->BombTag());
+					_bombCount[obj2->BombTag()].emplace_back(std::make_pair(_bombCount[obj2->BombTag()].size() + 1, obj2->Pos()));
+					obj2->BombTag(obj1->BombTag() + 1);
 					// アイテム生成
 					_itemList.emplace_back(std::make_shared<Item>(obj1->Pos(), obj2->Pos()));
 					_ui->Point(_ui->Point() + 120);

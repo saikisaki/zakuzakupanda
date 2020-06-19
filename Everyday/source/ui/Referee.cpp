@@ -4,6 +4,8 @@
 #include "../Mng/ImageMng.h"
 #include "../Mng/SceneMng.h"
 
+constexpr int TIME_LIMIT = 120;
+
 Referee::Referee()
 {
 	Init();
@@ -45,14 +47,14 @@ bool Referee::TimeUpdate(void)
 {
 	int time = lpSceneMng.GetFrame() / 60;
 
-	if (time > 10)
+	if (time > TIME_LIMIT)
 	{
 		return false;
 	}
 
 	for (auto &num : _timeArray)
 	{
-		if (time == 180)
+		if (time == TIME_LIMIT)
 		{
 			break;
 		}
@@ -125,11 +127,11 @@ void Referee::Draw(void)
 		digits++;
 	}
 
-	for (auto &bomb : _bombCnt)
-	{
-		for (auto &bNum : bomb)
-		{
-			DrawFormatString(bNum.second.x, bNum.second.y, 0xaaaaaa, "%d", bNum.first);
-		}
-	}
+	//for (auto &bomb : _bombCnt)
+	//{
+	//	for (auto &bNum : bomb)
+	//	{
+	//		DrawFormatString(bNum.second.x, bNum.second.y, 0xaaaaaa, "%d", bNum.first);
+	//	}
+	//}
 }

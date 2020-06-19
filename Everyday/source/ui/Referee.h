@@ -4,6 +4,7 @@
 #include "../common/VECTOR2.h"
 #include "../scene/GameScene.h"
 
+
 class Referee
 {
 public:
@@ -21,10 +22,11 @@ private:
 	VECTOR2 _pointPos;
 	VECTOR2 _timePos;
 	VECTOR2 _size;
-	int _time;
-	std::array<int,5> _pointArray;
-	std::array<int, 3> _timeArray;
-	std::array<int, 10> _numArray;
+	int _time;				// 経過時間
+	
+	std::array<int,5> _pointArray;			// ポイントカウント、5桁分
+	std::array<int, 3> _timeArray;			// 時間カウント、100の桁、10の桁、1の桁
+	std::array<int, 10> _numArray;			// カウント表記用配列
 	BombVec _bombCnt;
 };
 

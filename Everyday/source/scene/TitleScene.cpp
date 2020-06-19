@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "../input/GameCtrl.h"
 #include "GameScene.h"
+#include "../Mng/ImageMng.h"
 
 TitleScene::TitleScene()
 {
@@ -34,5 +35,6 @@ Unique_Base TitleScene::UpDate(Unique_Base own)
 
 void TitleScene::Draw(void)
 {
-	DrawString(200, 200, "エンターキーを押してください", 0xffffff);
+	DrawGraph(300, 100, lpImageMng.GetID("image/title.png")[0], true);
+	DrawString(500, 500, "エンターキーを押してください", 0xffffff);
 }
